@@ -5,7 +5,7 @@ import 'package:routes_sample/second_page.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key:key);
+  const MyApp({Key? key}) : super(key: key);
 
   static const String _title = 'Flutter Code Sample';
 
@@ -32,7 +32,20 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
 
-  static const List
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      '0번째 : Home',
+      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+    ),
+    Text(
+      '1번째 : Search',
+      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+    ),
+    Text(
+      '2번째 : Profile',
+      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -40,28 +53,29 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       appBar: AppBar(
         title: const Text('BottomNavigationBar Sample'),
       ),
-      body: const Center(),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
         selectedItemColor: Colors.yellowAccent,
         unselectedItemColor: Colors.grey[50],
         currentIndex: _selectedIndex,
-
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Colors.indigo,
+            icon: Icon(Icons.home),
+            label: 'Home',
+            backgroundColor: Colors.indigo,
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Search',
-              backgroundColor: Colors.deepOrange,
+            icon: Icon(Icons.search),
+            label: 'Search',
+            backgroundColor: Colors.deepOrange,
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              label: 'Profile',
-              backgroundColor: Colors.deepPurple,
+            icon: Icon(Icons.person_outline),
+            label: 'Profile',
+            backgroundColor: Colors.deepPurple,
           ),
         ],
         onTap: (int index) {
